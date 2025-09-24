@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block title %}Cadastro{% endblock %}
+{% block page_title %}Cadastro{% endblock %}
+{% block content %}
+
+<h2 style="margin-top: 40px;">Categorias</h2>
+
+<form id="form-categoria" style="margin-bottom: 20px;">
+  <input type="text" name="nome" placeholder="Nova categoria" required>
+  <button type="submit">Cadastrar</button>
+</form>
+
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="text-align: left;">Nome</th>
+      <th style="text-align: center;">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in categorias %}
+    <tr>
+      <td>
+        <span id="nome-{{ c.id }}">{{ c.nome }}</span>
+        <input type="text" id="input-{{ c.id }}" value="{{ c.nome }}" style="display:none;">
+      </td>
+      <td style="text-align: center;">
+  <button onclick="mostrarEdicao('{{ c.id }}')" id="btn-editar-{{ c.id }}" class="btn-acao" title="Editar">
+    <i class="fa-solid fa-pen-to-square"></i>
+  </button>
+
+  <button onclick="salvarEdicao('{{ c.id }}')" style="display:none;" id="btn-salvar-{{ c.id }}" class="btn-acao" title="Salvar">
+    <i class="fa-solid fa-floppy-disk"></i>
+  </button>
+
+  <button onclick="excluirCategoria('{{ c.id }}')" class="btn-acao" title="Excluir">
+    <i class="fa-solid fa-trash-can"></i>
+  </button>
+</td>
+
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+  // Cadastro de nova categoria
+  document.getElementById("form-categoria").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    fetch("/nova_categoria", {
+      method: "POST",
+      body: formData
+    }).then(res => res.json()).then(data => {
+      if (data.status === "ok") {
+        location.reload();
+      } else {
+        alert("Erro ao cadastrar categoria.");
+      }
+    });
+  });
+
+  // Exclusão de categoria
+  function excluirCategoria(id) {
+    const formData = new FormData();
+    formData.append("categoria_id", id);
+    fetch("/excluir_categoria", {
+      method: "POST",
+      body: formData
+    }).then(res => res.json()).then(data => {
+      if (data.status === "ok") {
+        location.reload();
+      } else {
+        alert("Erro ao excluir categoria.");
+      }
+    });
+  }
+
+  // Mostrar campo de edição
+  function mostrarEdicao(id) {
+    document.getElementById("nome-" + id).style.display = "none";
+    const input = document.getElementById("input-" + id);
+    input.style.display = "inline-block";
+    input.focus();
+    document.getElementById("btn-editar-" + id).style.display = "none";
+    document.getElementById("btn-salvar-" + id).style.display = "inline-block";
+  }
+
+  // Salvar edição
+  function salvarEdicao(id) {
+    const input = document.getElementById("input-" + id);
+    const novoNome = input.value.trim();
+
+    if (novoNome === "") {
+      alert("O nome da categoria não pode estar vazio.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("categoria_id", id);
+    formData.append("novo_nome", novoNome);
+
+    fetch("/editar_categoria", {
+      method: "POST",
+      body: formData
+    }).then(res => res.json()).then(data => {
+      if (data.status === "ok") {
+        location.reload();
+      } else {
+        alert("Erro ao editar categoria.");
+      }
+    }).catch(() => {
+      alert("Erro de conexão.");
+    });
+  }
+</script>
+
+{% endblock %}

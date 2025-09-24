@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% block title %}Ver Lançamentos{% endblock %}
+{% block page_title %}Lançamentos Registrados{% endblock %}
+{% block content %}
+
+<!-- Filtros -->
+<form id="filtro-form" style="margin-bottom: 20px;">
+  <label for="mes">Filtrar por mês:</label>
+  <select name="mes" id="mes">
+    <option value="">Todos os meses</option>
+    {% for m in ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"] %}
+      <option value="{{ m }}">{{ m|capitalize }}</option>
+    {% endfor %}
+  </select>
+
+  <label for="ano">Filtrar por ano:</label>
+  <select name="ano" id="ano">
+    {% for a in [2025, 2026, 2027] %}
+      <option value="{{ a }}">{{ a }}</option>
+    {% endfor %}
+  </select>
+
+  <label for="tipo">Filtrar por tipo:</label>
+  <select name="tipo" id="tipo">
+    <option value="">Todos os tipos</option>
+    <option value="Entrada">Entrada</option>
+    <option value="Saída">Saída</option>
+    <option value="Montante">Montante</option>
+  </select>
+</form>
+
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th>Categoria</th>
+      <th>Mês</th>
+      <th>Ano</th>
+      <th>Tipo</th>
+      <th style="width: 25%;">Descrição</th>
+      <th style="text-align: right;">Valor (R$)</th>
+      <th style="text-align: center;">Ações</th>
+    </tr>
+  </thead>
+  <tbody id="lancamentos-tabela">
+    {% for l in lancamentos %}
+    <tr id="linha-{{ l.id }}" data-mes="{{ l.mes }}" data-ano="{{ l.ano }}" data-tipo="{{ l.tipo }}">
+      <td>{{ l.categoria }}</td>
+      <td>{{ l.mes|capitalize }}</td>
+      <td>{{ l.ano }}</td>
+      <td>{{ l.tipo }}</td>
+      <td>
+        <span id="desc-{{ l.id }}">{{ l.descricao }}</span>
+        <input type="text" id="desc-edit-{{ l.id }}" style="display:none; width: 100%; box-sizing: border-box;" value="{{ l.descricao }}">
+      </td>
+      <td style="text-align: right;">
+        <span id="val-{{ l.id }}" class="valor">{{ "%.2f"|format(l.valor)|replace(".", ",") }}</span>
+        <input type="text" id="val-edit-{{ l.id }}" style="display:none; text-align:right;">
+      </td>
+      <td style="text-align: center;">
+        <button onclick="iniciarEdicao('{{ l.id }}')" id="btn-editar-{{ l.id }}" class="btn-acao" title="Editar">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+        <button onclick="salvarEdicao('{{ l.id }}')" style="display:none;" id="btn-salvar-{{ l.id }}" class="btn-acao" title="Salvar">
+          <i class="fa-solid fa-floppy-disk"></i>
+        </button>
+        <button onclick="excluirLancamento('{{ l.id }}')" class="btn-acao" title="Excluir">
+          <i class="fa-solid fa-trash-can"></i>
+        </button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+  const meses = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+  const hoje = new Date();
+  const mesAtual = meses[hoje.getMonth()];
+
+  const filtroMes = localStorage.getItem("filtro_mes");
+  const filtroAno = localStorage.getItem("filtro_ano");
+  const filtroTipo = localStorage.getItem("filtro_tipo");
+
+  if (filtroMes || filtroAno || filtroTipo) {
+    if (filtroMes) document.getElementById("mes").value = filtroMes;
+    if (filtroAno) document.getElementById("ano").value = filtroAno;
+    if (filtroTipo) document.getElementById("tipo").value = filtroTipo;
+  } else {
+    document.getElementById("mes").value = mesAtual;
+    document.getElementById("ano").value = "2025";
+  }
+
+  aplicarFiltros();
+
+  function salvarFiltrosLocais() {
+    localStorage.setItem("filtro_mes", document.getElementById("mes").value);
+    localStorage.setItem("filtro_ano", document.getElementById("ano").value);
+    localStorage.setItem("filtro_tipo", document.getElementById("tipo").value);
+  }
+
+  function aplicarFiltros() {
+    const mesSelecionado = document.getElementById("mes").value.toLowerCase();
+    const anoSelecionado = document.getElementById("ano").value;
+    const tipoSelecionado = document.getElementById("tipo").value.toLowerCase();
+    const linhas = document.querySelectorAll("#lancamentos-tabela tr");
+
+    linhas.forEach(linha => {
+      const mes = linha.getAttribute("data-mes").toLowerCase();
+      const ano = linha.getAttribute("data-ano").toString();
+      const tipo = linha.getAttribute("data-tipo").toLowerCase();
+
+      const mostrarMes = (!mesSelecionado || mes === mesSelecionado);
+      const mostrarAno = (!anoSelecionado || ano === anoSelecionado);
+      const mostrarTipo = (!tipoSelecionado || tipo === tipoSelecionado);
+
+      linha.style.display = (mostrarMes && mostrarAno && mostrarTipo) ? "" : "none";
+    });
+  }
+
+  document.getElementById("mes").addEventListener("change", () => {
+    aplicarFiltros();
+    salvarFiltrosLocais();
+  });
+  document.getElementById("ano").addEventListener("change", () => {
+    aplicarFiltros();
+    salvarFiltrosLocais();
+  });
+  document.getElementById("tipo").addEventListener("change", () => {
+    aplicarFiltros();
+    salvarFiltrosLocais();
+  });
+
+  function iniciarEdicao(id) {
+    const linha = document.getElementById("linha-" + id);
+    linha.style.backgroundColor = "#fff8dc";
+
+    document.getElementById("desc-" + id).style.display = "none";
+    document.getElementById("val-" + id).style.display = "none";
+    document.getElementById("desc-edit-" + id).style.display = "inline-block";
+    document.getElementById("val-edit-" + id).style.display = "inline-block";
+    document.getElementById("btn-editar-" + id).style.display = "none";
+    document.getElementById("btn-salvar-" + id).style.display = "inline-block";
+
+    const valorTexto = document.getElementById("val-" + id).innerText;
+    document.getElementById("val-edit-" + id).value = "R$ " + valorTexto;
+  }
+
+  function salvarEdicao(id) {
+    const descricao = document.getElementById("desc-edit-" + id).value.trim();
+    const valorTexto = document.getElementById("val-edit-" + id).value.replace(/\D/g, "");
+    const valor = parseFloat(valorTexto.replace(/^0+/, "").padStart(3, "0").replace(/(\d+)(\d{2})$/, "$1.$2"));
+
+    const formData = new FormData();
+    formData.append("lancamento_id", id);
+    formData.append("descricao", descricao);
+    formData.append("valor", valor);
+
+    fetch("/editar_lancamento", {
+      method: "POST",
+      body: formData
+    }).then(res => res.json()).then(data => {
+      if (data.status === "ok") {
+        location.reload();
+      } else {
+        alert("Erro ao editar lançamento.");
+      }
+    });
+  }
+
+  function excluirLancamento(id) {
+    if (!confirm("Tem certeza que deseja excluir este lançamento?")) return;
+
+    const formData = new FormData();
+    formData.append("lancamento_id", id);
+    fetch("/excluir_lancamento", {
+      method: "POST",
+      body: formData
+    }).then(res => res.json()).then(data => {
+      if (data.status === "ok") {
+        location.reload();
+      } else {
+        alert("Erro ao excluir lançamento.");
+      }
+    });
+  }
+
+  // Formatação bancária durante digitação
+  document.querySelectorAll("input[id^='val-edit-']").forEach(input => {
+    input.addEventListener("input", function () {
+      let valor = this.value.replace(/\D/g, "");
+      valor = valor.replace(/^0+/, "");
+      if (valor.length < 3) valor = valor.padStart(3, "0");
+      const centavos = valor.slice(-2);
+      const reais = valor.slice(0, -2);
+      const reaisFormatado = reais.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      this.value = `R$ ${reaisFormatado},${centavos}`;
+    });
+  });
+
+  // Formatar valores visíveis na tabela
+  document.querySelectorAll("span.valor").forEach(span => {
+    const raw = parseFloat(span.textContent.replace(",", "."));
+    if (!isNaN(raw)) {
+      span.textContent = raw.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      });
+    }
+  });
+</script>
+
+{% endblock %}

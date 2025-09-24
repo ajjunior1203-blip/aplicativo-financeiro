@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Finance App{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+
+    h1 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      background-color: #007bff;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    nav a {
+      color: #ffffff;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      background-color: #0056b3;
+    }
+    .content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f0f0f0;
+    }
+
+    input, select, button {
+      font-size: 14px;
+      padding: 8px;
+      margin: 5px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .btn-acao {
+      background-color: transparent;
+      border: none;
+      color: #2563eb;
+      font-size: 18px;
+      cursor: pointer;
+      margin: 0 4px;
+      transition: color 0.3s ease;
+    }
+
+    .btn-acao:hover {
+      color: #1e3a8a;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 20px;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav a {
+        font-size: 16px;
+        padding: 10px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .content {
+        padding: 15px;
+      }
+
+      table, th, td {
+        font-size: 13px;
+      }
+
+      input, select, button {
+        font-size: 13px;
+      }
+
+      .btn-acao {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>{% block page_title %}Finance App{% endblock %}</h1>
+
+  <nav>
+    <a href="/lancamentos">Registrar Lançamento</a>
+    <a href="/ver_lancamentos">Ver Lançamentos</a>
+    <a href="/graficos">Gráficos</a>
+    <a href="/">Categorias</a>
+    <a href="/orcamentos">Cadastro de Orçamento</a>
+    <a href="/ver_orcamentos">Ver Orçamentos</a>
+  </nav>
+
+  <div class="content">
+    {% block content %}{% endblock %}
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/static/service-worker.js')
+        .then(reg => console.log('Service Worker registrado:', reg.scope))
+        .catch(err => console.error('Erro ao registrar Service Worker:', err));
+    }
+  </script>
+
+</body>
+</html>

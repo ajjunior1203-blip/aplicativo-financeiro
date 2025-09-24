@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Cadastro de Orçamento{% endblock %}
+{% block page_title %}Cadastrar Orçamento{% endblock %}
+{% block content %}
+
+<form id="form-orcamento">
+<label for="categoria">Categoria:</label>
+<select name="categoria" id="categoria" required>
+  <option value="">Escolha uma categoria</option>
+  {% for c in categorias %}
+    <option value="{{ c.nome }}">{{ c.nome }}</option>
+  {% endfor %}
+</select>
+
+  <label for="mes">Mês:</label>
+  <select name="mes" id="mes" required>
+    {% for m in ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"] %}
+      <option value="{{ m }}">{{ m|capitalize }}</option>
+    {% endfor %}
+  </select>
+
+  <label for="ano">Ano:</label>
+  <select name="ano" id="ano" required>
+    {% for a in [2025, 2026, 2027] %}
+      <option value="{{ a }}">{{ a }}</option>
+    {% endfor %}
+  </select>
+
+  <label for="valor_formatado">Valor:</label>
+  <input type="text" id="valor_formatado" placeholder="R$ 0,00" required>
+  <input type="hidden" name="valor" id="valor_real">
+
+  <button type="submit">Salvar Orçamento</button>
+</form>
+
+<script>
+  // Preencher mês atual
+  const meses = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+  const hoje = new Date();
+  const mesAtual = meses[hoje.getMonth()];
+  const anoAtual = hoje.getFullYear();
+
+  document.getElementById("mes").value = mesAtual;
+  document.getElementById("ano").value = anoAtual;
+
+  // Formatação bancária
+  const campoFormatado = document.getElementById("valor_formatado");
+  const campoReal = document.getElementById("valor_real");
+
+  campoFormatado.addEventListener("input", function () {
+    let valor = this.value.replace(/\D/g, "");
+    valor = valor.replace(/^0+/, "");
+    if (valor.length < 3) valor = valor.padStart(3, "0");
+    const centavos = valor.slice(-2);
+    const reais = valor.slice(0, -2);
+    const reaisFormatado = reais.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    this.value = `R$ ${reaisFormatado},${centavos}`;
+    campoReal.value = parseFloat(`${reais}.${centavos}`);
+  });
+
+  // Envio do formulário
+  document.getElementById("form-orcamento").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    fetch("/novo_orcamento", {
+      method: "POST",
+      body: formData
+    }).then(res => res.json()).then(data => {
+      if (data.status === "ok") {
+        alert("Orçamento Salvo!");
+        location.reload();
+      } else {
+        alert("Erro ao Salvar.");
+      }
+    });
+  });
+</script>
+
+{% endblock %}

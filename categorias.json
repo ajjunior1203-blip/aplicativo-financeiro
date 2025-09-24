@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "nome": "Salário"
+  },
+  {
+    "id": 2,
+    "nome": "Financiamento"
+  },
+  {
+    "id": 3,
+    "nome": "Mercado"
+  },
+  {
+    "id": 4,
+    "nome": "Aluguel"
+  },
+  {
+    "id": 5,
+    "nome": "Reserva"
+  }
+]

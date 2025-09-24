@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}Registrar Lançamento{% endblock %}
+{% block page_title %}Registrar Lançamento{% endblock %}
+{% block content %}
+
+<form id="form-lancamento">
+  <label for="data">Data:</label>
+  <input type="date" name="data" id="data" required>
+
+  <label for="categoria">Categoria:</label>
+  <select name="categoria" id="categoria" required>
+    <option value="">Escolha uma categoria</option>
+    {% for c in categorias %}
+      <option value="{{ c.nome }}">{{ c.nome }}</option>
+    {% endfor %}
+  </select>
+
+  <label>Tipo:</label>
+  <div style="margin-bottom: 10px;">
+    <label style="margin-right: 20px;">
+      <input type="radio" name="tipo" value="Entrada" required>
+      Entrada
+    </label>
+    <label style="margin-right: 20px;">
+      <input type="radio" name="tipo" value="Saída" required>
+      Saída
+    </label>
+    <label>
+      <input type="radio" name="tipo" value="Montante" required>
+      Montante
+    </label>
+  </div>
+
+  <label for="descricao">Descrição:</label>
+  <input type="text" name="descricao" id="descricao">
+
+  <label for="valor_formatado">Valor:</label>
+  <input type="text" id="valor_formatado" placeholder="R$ 0,00" required>
+  <input type="hidden" name="valor" id="valor_real">
+
+  <label>
+    <input type="checkbox" id="parcelado" name="parcelado">
+    Lançamento parcelado
+  </label>
+
+  <div id="parcelas-container" style="display:none; margin-top: 10px;">
+    <label for="parcelas">Número de parcelas:</label>
+    <input type="number" id="parcelas" name="parcelas" min="2" max="12" placeholder="Ex: 3">
+  </div>
+
+  <button type="submit">Salvar Lançamento</button>
+</form>
+
+<script>
+  // Preencher data atual no campo de data
+  const campoData = document.getElementById("data");
+  const hoje = new Date();
+  const yyyy = hoje.getFullYear();
+  const mm = String(hoje.getMonth() + 1).padStart(2, "0");
+  const dd = String(hoje.getDate()).padStart(2, "0");
+  campoData.value = `${yyyy}-${mm}-${dd}`;
+
+  // Formatação bancária
+  const campoFormatado = document.getElementById("valor_formatado");
+  const campoReal = document.getElementById("valor_real");
+
+  campoFormatado.addEventListener("input", function () {
+    let valor = this.value.replace(/\D/g, "");
+    valor = valor.replace(/^0+/, "");
+    if (valor.length < 3) valor = valor.padStart(3, "0");
+    const centavos = valor.slice(-2);
+    const reais = valor.slice(0, -2);
+    const reaisFormatado = reais.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    this.value = `R$ ${reaisFormatado},${centavos}`;
+    campoReal.value = parseFloat(`${reais}.${centavos}`);
+  });
+
+  // Mostrar campo de parcelas se marcado como parcelado
+  document.getElementById("parcelado").addEventListener("change", function () {
+    document.getElementById("parcelas-container").style.display = this.checked ? "block" : "none";
+  });
+
+  // Envio do formulário
+  document.getElementById("form-lancamento").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    fetch("/novo_lancamento", {
+      method: "POST",
+      body: formData
+    }).then(res => res.json()).then(data => {
+      if (data.status === "ok") {
+        alert("Lançamento salvo com sucesso!");
+        location.reload();
+      } else {
+        alert("Erro ao salvar lançamento.");
+      }
+    });
+  });
+</script>
+
+{% endblock %}

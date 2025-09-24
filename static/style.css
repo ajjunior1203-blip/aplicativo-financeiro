@@ -1,0 +1,163 @@
+/* Fonte moderna e limpa */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f5f7fa; /* tom perolado */
+  color: #111827; /* preto suave */
+  margin: 0;
+  padding: 0;
+}
+
+/* Navegação superior */
+nav {
+  background-color: #1e3a8a; /* azul profundo */
+  padding: 12px 24px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+nav a {
+  color: #ffffff !important;     /* força o branco */
+  font-weight: 600 !important;   /* força o negrito */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #cbd5e1;
+}
+
+/* Títulos */
+h1, h2, h3 {
+  color: #1e3a8a;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* Formulários */
+form {
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  max-width: 600px;
+  margin: 30px auto;
+}
+
+label {
+  display: block;
+  margin-top: 16px;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #111827;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #f9fafb;
+  font-size: 14px;
+  color: #111827;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  width: auto;
+  margin-right: 8px;
+}
+
+/* Botões */
+button {
+  background-color: #2563eb; /* azul moderno */
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 500;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #1d4ed8;
+}
+
+/* Seções de gráfico */
+canvas {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+/* Comparativo por categoria */
+#categorias-comparativo div {
+  font-size: 14px;
+  color: #111827;
+}
+
+#categorias-comparativo strong {
+  color: #1e3a8a;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  form {
+    padding: 16px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+@media (max-width: 600px) {
+  body {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  nav a {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  form, table {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  table th, table td {
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  input, select, textarea {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .btn-acao {
+    font-size: 16px;
+  }
+}

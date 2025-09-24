@@ -1,0 +1,40 @@
+[
+  {
+    "id": 1,
+    "categoria": "Salário",
+    "mes": "setembro",
+    "ano": 2025,
+    "tipo": "Entrada",
+    "descricao": "",
+    "valor": 3380.93
+  },
+  {
+    "id": 2,
+    "categoria": "Financiamento",
+    "mes": "setembro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "Casa",
+    "valor": 1045.64
+  },
+  {
+    "id": 3,
+    "categoria": "Aluguel",
+    "mes": "setembro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "",
+    "valor": 650.0,
+    "data": "2025-09-24"
+  },
+  {
+    "id": 4,
+    "categoria": "Reserva",
+    "mes": "setembro",
+    "ano": 2025,
+    "tipo": "Montante",
+    "descricao": "",
+    "valor": 7201.57,
+    "data": "2025-09-24"
+  }
+]
