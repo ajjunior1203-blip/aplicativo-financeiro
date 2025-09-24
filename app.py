@@ -38,6 +38,11 @@ from flask import redirect
 def redirecionar_para_lancamentos():
     return redirect("/lancamentos")
 
+@app.route("/categorias")
+def categorias_view():
+    return render_template("categorias.html", categorias=categorias)
+
+
 @app.route("/nova_categoria", methods=["POST"])
 def nova_categoria():
     nome = request.form.get("nome")
