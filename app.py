@@ -40,8 +40,7 @@ def redirecionar_para_lancamentos():
 
 @app.route("/categorias")
 def categorias_view():
-    return render_template("categorias.html", categorias=categorias)
-
+    return render_template("cadastro.html", categorias=categorias)
 
 @app.route("/nova_categoria", methods=["POST"])
 def nova_categoria():
