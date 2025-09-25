@@ -36,5 +36,335 @@
     "descricao": "",
     "valor": 7201.57,
     "data": "2025-09-24"
+  },
+  {
+    "id": 5,
+    "categoria": "Salário",
+    "mes": "outubro",
+    "ano": 2025,
+    "tipo": "Entrada",
+    "descricao": "",
+    "valor": 3380.0,
+    "data": "2025-10-03"
+  },
+  {
+    "id": 6,
+    "categoria": "Aluguel",
+    "mes": "outubro",
+    "ano": 2025,
+    "tipo": "Entrada",
+    "descricao": "",
+    "valor": 813.0,
+    "data": "2025-10-20"
+  },
+  {
+    "id": 7,
+    "categoria": "Água",
+    "mes": "outubro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "",
+    "valor": 60.0,
+    "data": "2025-10-08"
+  },
+  {
+    "id": 8,
+    "categoria": "Internet",
+    "mes": "outubro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "Brisanet",
+    "valor": 99.9,
+    "data": "2025-10-08"
+  },
+  {
+    "id": 9,
+    "categoria": "Aluguel",
+    "mes": "outubro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "De onde moro",
+    "valor": 650.0,
+    "data": "2025-10-24"
+  },
+  {
+    "id": 10,
+    "categoria": "Plano de Celular",
+    "mes": "outubro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "Brisanet",
+    "valor": 29.99,
+    "data": "2025-10-15"
+  },
+  {
+    "id": 11,
+    "categoria": "Financiamento",
+    "mes": "outubro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "Casa",
+    "valor": 1127.4,
+    "data": "2025-10-03"
+  },
+  {
+    "id": 12,
+    "categoria": "Seguro da Moto",
+    "mes": "outubro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "Allianz",
+    "valor": 45.78,
+    "data": "2025-10-24"
+  },
+  {
+    "id": 13,
+    "categoria": "Assinatura Streaming",
+    "mes": "outubro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "Crunchyroll",
+    "valor": 14.99,
+    "data": "2025-10-24"
+  },
+  {
+    "id": 14,
+    "categoria": "Autoescola",
+    "mes": "setembro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": " (parcela 1/10)",
+    "valor": 130.0,
+    "data": "2025-09-24"
+  },
+  {
+    "id": 15,
+    "categoria": "Autoescola",
+    "mes": "outubro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "2/10",
+    "valor": 130.0,
+    "data": "2025-09-24"
+  },
+  {
+    "id": 16,
+    "categoria": "Autoescola",
+    "mes": "novembro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": " (parcela 3/10)",
+    "valor": 130.0,
+    "data": "2025-09-24"
+  },
+  {
+    "id": 17,
+    "categoria": "Autoescola",
+    "mes": "dezembro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": " (parcela 4/10)",
+    "valor": 130.0,
+    "data": "2025-09-24"
+  },
+  {
+    "id": 18,
+    "categoria": "Autoescola",
+    "mes": "janeiro",
+    "ano": 2026,
+    "tipo": "Saída",
+    "descricao": " (parcela 5/10)",
+    "valor": 130.0,
+    "data": "2025-09-24"
+  },
+  {
+    "id": 19,
+    "categoria": "Autoescola",
+    "mes": "fevereiro",
+    "ano": 2026,
+    "tipo": "Saída",
+    "descricao": " (parcela 6/10)",
+    "valor": 130.0,
+    "data": "2025-09-24"
+  },
+  {
+    "id": 20,
+    "categoria": "Autoescola",
+    "mes": "março",
+    "ano": 2026,
+    "tipo": "Saída",
+    "descricao": " (parcela 7/10)",
+    "valor": 130.0,
+    "data": "2025-09-24"
+  },
+  {
+    "id": 21,
+    "categoria": "Autoescola",
+    "mes": "abril",
+    "ano": 2026,
+    "tipo": "Saída",
+    "descricao": " (parcela 8/10)",
+    "valor": 130.0,
+    "data": "2025-09-24"
+  },
+  {
+    "id": 22,
+    "categoria": "Autoescola",
+    "mes": "maio",
+    "ano": 2026,
+    "tipo": "Saída",
+    "descricao": " (parcela 9/10)",
+    "valor": 130.0,
+    "data": "2025-09-24"
+  },
+  {
+    "id": 23,
+    "categoria": "Autoescola",
+    "mes": "junho",
+    "ano": 2026,
+    "tipo": "Saída",
+    "descricao": " (parcela 10/10)",
+    "valor": 130.0,
+    "data": "2025-09-24"
+  },
+  {
+    "id": 24,
+    "categoria": "Entrada da Casa",
+    "mes": "setembro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": " (parcela 1/3)",
+    "valor": 1127.4,
+    "data": "2025-09-25"
+  },
+  {
+    "id": 25,
+    "categoria": "Entrada da Casa",
+    "mes": "outubro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "2/3",
+    "valor": 1127.4,
+    "data": "2025-09-25"
+  },
+  {
+    "id": 26,
+    "categoria": "Entrada da Casa",
+    "mes": "novembro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "3/3",
+    "valor": 1127.4,
+    "data": "2025-09-25"
+  },
+  {
+    "id": 27,
+    "categoria": "Assinatura",
+    "mes": "outubro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "Spotify",
+    "valor": 13.3,
+    "data": "2025-10-03"
+  },
+  {
+    "id": 29,
+    "categoria": "Alimentação",
+    "mes": "outubro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "Mercado Diniz",
+    "valor": 48.94,
+    "data": "2025-10-23"
+  },
+  {
+    "id": 30,
+    "categoria": "Lazer/Compra curto prazo",
+    "mes": "outubro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "Pés/Brocas/Minoxidil (Shopee) 1/2",
+    "valor": 81.64,
+    "data": "2025-10-23"
+  },
+  {
+    "id": 31,
+    "categoria": "Lazer/Compra curto prazo",
+    "mes": "novembro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "Pés/Brocas/Minoxidil (Shopee) 2/2",
+    "valor": 81.64,
+    "data": "2025-10-23"
+  },
+  {
+    "id": 32,
+    "categoria": "Alimentação",
+    "mes": "outubro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "Mercado São Luiz",
+    "valor": 68.85,
+    "data": "2025-10-23"
+  },
+  {
+    "id": 33,
+    "categoria": "Lazer/Compra curto prazo",
+    "mes": "outubro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "Shopee 3/3",
+    "valor": 63.96,
+    "data": "2025-10-23"
+  },
+  {
+    "id": 34,
+    "categoria": "Lazer/Compra curto prazo",
+    "mes": "outubro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "Capacete (Amazon) 3/8",
+    "valor": 56.12,
+    "data": "2025-10-23"
+  },
+  {
+    "id": 35,
+    "categoria": "Lazer/Compra curto prazo",
+    "mes": "outubro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "Viseira (Amazon) 3/3",
+    "valor": 34.83,
+    "data": "2025-10-23"
+  },
+  {
+    "id": 36,
+    "categoria": "Lazer/Compra curto prazo",
+    "mes": "outubro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "Liquidificador (Amazon) 2/4 (parcela 1/3)",
+    "valor": 32.25,
+    "data": "2025-10-23"
+  },
+  {
+    "id": 37,
+    "categoria": "Lazer/Compra curto prazo",
+    "mes": "novembro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "Liquidificador (Amazon) 2/4 (parcela 2/3)",
+    "valor": 32.25,
+    "data": "2025-10-23"
+  },
+  {
+    "id": 38,
+    "categoria": "Lazer/Compra curto prazo",
+    "mes": "dezembro",
+    "ano": 2025,
+    "tipo": "Saída",
+    "descricao": "Liquidificador (Amazon) 2/4 (parcela 3/3)",
+    "valor": 32.25,
+    "data": "2025-10-23"
   }
 ]

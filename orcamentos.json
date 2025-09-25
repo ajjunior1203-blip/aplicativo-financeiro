@@ -1,9 +1,107 @@
 [
   {
-    "id": 1,
-    "categoria": "Lazer",
-    "mes": "setembro",
+    "id": 2,
+    "categoria": "Água",
+    "mes": "outubro",
     "ano": 2025,
-    "valor": 250.0
+    "valor": 60.0
+  },
+  {
+    "id": 3,
+    "categoria": "Internet",
+    "mes": "outubro",
+    "ano": 2025,
+    "valor": 99.99
+  },
+  {
+    "id": 4,
+    "categoria": "Aluguel",
+    "mes": "outubro",
+    "ano": 2025,
+    "valor": 650.0
+  },
+  {
+    "id": 5,
+    "categoria": "Plano de Celular",
+    "mes": "outubro",
+    "ano": 2025,
+    "valor": 29.99
+  },
+  {
+    "id": 6,
+    "categoria": "Financiamento",
+    "mes": "outubro",
+    "ano": 2025,
+    "valor": 1127.4
+  },
+  {
+    "id": 7,
+    "categoria": "Seguro da Moto",
+    "mes": "outubro",
+    "ano": 2025,
+    "valor": 45.78
+  },
+  {
+    "id": 8,
+    "categoria": "Assinatura Streaming",
+    "mes": "outubro",
+    "ano": 2025,
+    "valor": 14.99
+  },
+  {
+    "id": 9,
+    "categoria": "Autoescola",
+    "mes": "outubro",
+    "ano": 2025,
+    "valor": 130.0
+  },
+  {
+    "id": 10,
+    "categoria": "Entrada da Casa",
+    "mes": "outubro",
+    "ano": 2025,
+    "valor": 1127.4
+  },
+  {
+    "id": 11,
+    "categoria": "Alimentação",
+    "mes": "outubro",
+    "ano": 2025,
+    "valor": 297.66
+  },
+  {
+    "id": 12,
+    "categoria": "Lazer/Compra curto prazo",
+    "mes": "outubro",
+    "ano": 2025,
+    "valor": 223.25
+  },
+  {
+    "id": 13,
+    "categoria": "Investimento",
+    "mes": "outubro",
+    "ano": 2025,
+    "valor": 148.83
+  },
+  {
+    "id": 14,
+    "categoria": "Educação",
+    "mes": "outubro",
+    "ano": 2025,
+    "valor": 74.41
+  },
+  {
+    "id": 15,
+    "categoria": "Assinatura",
+    "mes": "outubro",
+    "ano": 2025,
+    "valor": 13.3
+  },
+  {
+    "id": 16,
+    "categoria": "Gasolina",
+    "mes": "outubro",
+    "ano": 2025,
+    "valor": 150.0
   }
 ]
